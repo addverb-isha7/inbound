@@ -1,5 +1,6 @@
 package com.inbound.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,15 +19,16 @@ public class Sku {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long skuId;
 
-    private String status;   // GOOD / DAMAGED
-
+    private String skuName;
     private Double mrp;
+    private String batchNumber;
 
-    private String batch;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate expiry;
 
-    private Integer quantity;
+    private Integer expectedQuantity;
+    private Integer receivedQuantity;
+    private String status; // PENDING / GOOD / DAMAGED
 
     @ManyToOne
     @JoinColumn(name = "asn_id")

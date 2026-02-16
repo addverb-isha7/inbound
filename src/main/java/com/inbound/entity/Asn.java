@@ -18,11 +18,12 @@ public class Asn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long asnId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String shipmentNumber;
 
-    private String supplierName;
+    private String supplier;
 
-    @OneToMany(mappedBy = "asn", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "asn", cascade = CascadeType.ALL)
     private List<Sku> skus;
 }
+
